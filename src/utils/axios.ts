@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios from 'axios';
 
 const instance = axios.create({
   baseURL: `http://wangge.xcuni.com:10365/testxclife/ch${
@@ -13,37 +13,32 @@ const instance = axios.create({
 
 instance.defaults.withCredentials = true;
 
-export interface IResponse {
-  code: number;
-  data: any;
-  msg: string;
-  success: boolean;
-}
 
 instance.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config) => {
     const token = localStorage.getItem('token');
 
-    if (token) {
-      config.headers = {
-        ...config.headers,
-        'Blade-Auth': `Bearer ${token}`,
-      };
+    const { headers } = config;
+
+    if(token && headers) {
+      // 请求头添加token
+      headers['Blade-Auth']  = `Bearer ${token}`;
     }
 
     return config;
   },
   (err) => {
-    return Promise.reject(err);
+    console.log(err);
   }
 );
 
 instance.interceptors.response.use(
-  (response: AxiosResponse) => {
-    if (response.status !== 200) {
+  (response) => {
+    const { status, data } = response;
+    if (status !== 200) {
       console.log(response);
     }
-    return response.data;
+    return data;
   },
   (err) => {
     return Promise.reject(err);
