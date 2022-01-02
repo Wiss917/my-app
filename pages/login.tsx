@@ -1,12 +1,16 @@
 import { getUserInfo } from '@/api/login';
-import Image from 'next/image'
 import { GetStaticProps, NextPage } from 'next';
-
+import { Input } from '@mui/material';
+import style from '../styles/login.module.scss';
+import { useState } from 'react';
 const Login: NextPage = () => {
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
-    <div>
-      {/* <Image src={require('@/assets/4.jpg')} alt='登陆'></Image> */}
-      
+    <div className={style.page}>
+      <Input value={name}></Input>
+      <Input value={password}></Input>
     </div>
   );
 };

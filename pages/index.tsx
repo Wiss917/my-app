@@ -1,23 +1,28 @@
 import { GetStaticProps, NextPage } from 'next';
 import { TabBar } from '@/components/TabBar';
 import { Header } from '@/components/Header';
+import { useEffect } from 'react';
 
 interface IHomeProps {
-  configs: config[]
+  configs: config[];
 }
 
 type config = {
-  name: string,
-  alias: string,
-  remark: string,
-  link: string
-}
+  name: string;
+  alias: string;
+  remark: string;
+  link: string;
+};
 
-const Home: NextPage<IHomeProps>= ({ configs }) => {
+const Home: NextPage<IHomeProps> = ({ configs }) => {
   const barItems = ['图表', '首页', '我的'];
+  useEffect(() => {
+    document.title = 'Hello NextJS';
+  }, []);
+  
   return (
     <div>
-      <Header title='Hello NextJs'></Header>
+      <Header title="Hello NextJs"></Header>
       <div className="main"></div>
       <div className="footer"></div>
       <TabBar barItems={barItems}></TabBar>
@@ -25,12 +30,12 @@ const Home: NextPage<IHomeProps>= ({ configs }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps =async () => {
+export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
-      configs: []
-    }
-  }
-}
+      configs: [],
+    },
+  };
+};
 
 export default Home;

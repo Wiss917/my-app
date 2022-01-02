@@ -1,6 +1,6 @@
 import style from './index.module.scss';
-import { ArrowBackIos, Tune } from '@material-ui/icons';
-import { IconButton } from '@material-ui/core';
+import { ArrowBackIos, Tune } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 interface IHeaderProps {
   title: string;
 }
