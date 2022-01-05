@@ -1,9 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: `http://wangge.xcuni.com:10365/testxclife/ch${
-    process.env.NODE_ENV === 'development' ? 'Show' : 'Dev'
-  }Show/mobile/mobileApi`,
+  baseURL: '/api',
   timeout: 10000,
   headers: {
     'content-type': 'application/json;charset=UTF-8',
@@ -12,7 +10,6 @@ const instance = axios.create({
 });
 
 instance.defaults.withCredentials = true;
-
 
 instance.interceptors.request.use(
   (config) => {

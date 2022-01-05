@@ -1,6 +1,7 @@
 import style from './index.module.scss';
-import { ArrowBackIos, Tune } from '@material-ui/icons';
-import { IconButton } from '@material-ui/core';
+import { ArrowBackIos, Tune } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
+import Router from 'next/router';
 interface IHeaderProps {
   title: string;
 }
@@ -11,7 +12,7 @@ export const Header: React.FC<IHeaderProps> = ({ title }) => {
       <IconButton
         aria-label="back"
         onClick={() => {
-          console.log('back');
+          Router.back();
         }}
       >
         <ArrowBackIos></ArrowBackIos>
